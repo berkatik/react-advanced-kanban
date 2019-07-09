@@ -18,8 +18,6 @@ export default class Column extends Component {
 
     onDoubleClick = e => {
         e.target.contentEditable = true;
-        console.log(this.props);
-
     }
 
     onBlur = e => {
@@ -27,6 +25,45 @@ export default class Column extends Component {
 
         const newVal = e.target.innerText;
         this.props.column.title = newVal;
+    }
+
+    // onCardDoubleClick = e => {
+    //     if (e.target.firstElementChild) {
+    //         e.target.firstElementChild.contentEditable = true;
+    //     } else {
+    //         e.target.contentEditable = true;
+    //     }
+    // }
+
+    // onCardBlur = e => {
+    //     e.target.contentEditable = false;
+
+    //     const newVal = e.target.innerText;
+    //     // this.props.card.content = newVal;
+    //     console.log(this.props)
+
+    // }
+
+    addCard = () => {
+        /*
+        console.log(this.props);
+        debugger;
+        
+
+        const newCard = {
+            id: `task-${this.props.cards.length + 1}`,
+            content: '',
+        }
+
+        this.props.cards.push(newCard);
+        this.props.column.cardIds.push(newCard.id);
+
+
+        this.forceUpdate()
+        */
+
+        const columnId = this.props.column.id;
+        this.props.addCard(columnId);
     }
 
     render() {
@@ -64,11 +101,18 @@ export default class Column extends Component {
                                 className={`card-list ${this.props.cardListClassName}`}
                             >
                                 {
-                                    this.props.cards.map((card, index) => <Card key={card.id} card={card} index={index} renderer={this.props.renderer} />)}
+                                    this.props.cards.map((card, index) => <Card key={card.id} 
+                                                                            card={card} 
+                                                                            index={index} 
+                                                                            onDoubleClick={this.onCardDoubleClick} 
+                                                                            onBlur={this.onCardBlur}
+                                                                            renderer={this.props.renderer} 
+                                                                        />)}
                                 {provided.placeholder}
                             </div>)
                     }}
                 </Droppable>
+                <button type="button" onClick={ this.addCard }>Add Card</button>
             </div>
         )
     }

@@ -120,6 +120,20 @@ export default class Kanban extends React.Component {
         return;
     }
 
+    addCard = (columnId) => {
+        const newCard = {
+            id: `task-${this.state.cards.length + 1}`,
+            content: '',
+        }
+
+        this.state.cards.push(newCard);
+        this.state.columns[columnId].cardIds.push(newCard.id);
+
+        // debugger;
+
+        this.setState(this.state);
+    }
+
 
     render() {
         return (
@@ -139,7 +153,7 @@ export default class Kanban extends React.Component {
                             return this.state.cards.find(card => card["id"] === cardId)
                         })
 
-                        return <Column key={column.id} column={column} cards={cards} renderer={column.renderer || DefaultCardContent} />
+                        return <Column key={column.id} column={column} cards={cards} addCard={this.addCard} renderer={column.renderer || DefaultCardContent} />
                         /**
                          * @props   # key: to keep track of the columns created
                          *          # column: to pass column data

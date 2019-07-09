@@ -18,7 +18,11 @@ export default class card extends Component {
     }
 
     onDoubleClick = e => {
-        e.target.contentEditable = true;
+        if (e.target.firstElementChild) {
+            e.target.firstElementChild.contentEditable = true;
+        } else {
+            e.target.contentEditable = true;
+        }
     }
 
     onBlur = e => {
@@ -26,8 +30,8 @@ export default class card extends Component {
 
         const newVal = e.target.innerText;
         this.props.card.content = newVal;
-    }
 
+    }
 
     render() {
         return (
