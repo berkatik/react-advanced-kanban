@@ -8,10 +8,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <div>
-                test!!!!
             <Kanban data={initialData}></Kanban>
-            </div>
         )
     }
 }
