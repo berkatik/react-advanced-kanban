@@ -123,45 +123,62 @@ export default class Kanban extends React.Component {
     addCard = (columnId) => {
         const newCard = {
             id: `task-${this.state.cards.length + 1}`,
-            content: '',
+            content: 'New Card',
         }
 
         this.state.cards.push(newCard);
         this.state.columns[columnId].cardIds.push(newCard.id);
 
-        // debugger;
-
         this.setState(this.state);
+    }
+
+    addColumn = () => {
+        console.log(this.state)
+        const newColumn = {
+            id: `column-${this.state.columnOrder.length + 1}`,
+            title: 'New Column',
+            cardIds: [],
+        }
+
+        const newState = this.state;
+
+        newState.columns[newColumn.id] = newColumn;
+        newState.columnOrder.push(newColumn.id);
+
+        this.setState(newState);
     }
 
 
     render() {
         return (
-            <DragDropContext
-                onDragStart={this.onDragStart}
-                onDragUpdate={this.onDragUpdate}
-                onDragEnd={this.onDragEnd}
-                onBeforeDragStart={this.onBeforeDragStart}
+            <div>
+                <DragDropContext
+                    onDragStart={this.onDragStart}
+                    onDragUpdate={this.onDragUpdate}
+                    onDragEnd={this.onDragEnd}
+                    onBeforeDragStart={this.onBeforeDragStart}
 
-                className={this.props.className}
-            >
-                <div className={`container__columns ${this.props.columnContianerClass}`}>
-                    {this.state.columnOrder.map(columnId => {
-                        const column = this.state.columns[columnId];
+                    className={this.props.className}
+                >
+                    <div className={`container__columns ${this.props.columnContianerClass}`}>
+                        {this.state.columnOrder.map(columnId => {
+                            const column = this.state.columns[columnId];
 
-                        const cards = column.cardIds.map(cardId => {
-                            return this.state.cards.find(card => card["id"] === cardId)
-                        })
+                            const cards = column.cardIds.map(cardId => {
+                                return this.state.cards.find(card => card["id"] === cardId)
+                            })
 
-                        return <Column key={column.id} column={column} cards={cards} addCard={this.addCard} renderer={column.renderer || DefaultCardContent} />
-                        /**
-                         * @props   # key: to keep track of the columns created
-                         *          # column: to pass column data
-                         *          # cards: to pass the cards of the column
-                         */
-                    })}
-                </div>
-            </DragDropContext>
+                            return <Column key={column.id} column={column} cards={cards} addCard={this.addCard} renderer={column.renderer || DefaultCardContent} />
+                            /**
+                             * @props   # key: to keep track of the columns created
+                             *          # column: to pass column data
+                             *          # cards: to pass the cards of the column
+                             */
+                        })}
+                    </div>
+                </DragDropContext>
+                <button type="button" onClick={this.addColumn}>Add Column</button>
+            </div>
         )
     }
 }
