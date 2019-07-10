@@ -133,17 +133,37 @@ export default class Kanban extends React.Component {
     }
 
     addColumn = () => {
-        console.log(this.state)
         const newColumn = {
             id: `column-${this.state.columnOrder.length + 1}`,
             title: 'New Column',
             cardIds: [],
-        }
+        }        
 
         const newState = this.state;
 
         newState.columns[newColumn.id] = newColumn;
         newState.columnOrder.push(newColumn.id);
+
+        this.setState(newState);
+    }
+
+    editCard = (editedCard) => {
+        let cardIndex;
+        const newState = this.state;
+
+        this.state.cards.map((card, index) => {
+            if (card.id === editedCard.id) {
+                cardIndex = index;
+            }
+        })
+
+        newState.cards[cardIndex] = editedCard;
+        this.setState(newState);
+    }
+
+    editColumn = (editedColumn) => {
+        const newState = this.state;
+        newState.columns[editedColumn.id] = editedColumn;
 
         this.setState(newState);
     }
@@ -168,7 +188,14 @@ export default class Kanban extends React.Component {
                                 return this.state.cards.find(card => card["id"] === cardId)
                             })
 
-                            return <Column key={column.id} column={column} cards={cards} addCard={this.addCard} renderer={column.renderer || DefaultCardContent} />
+                            return <Column 
+                                    key={column.id} 
+                                    column={column} 
+                                    cards={cards} 
+                                    addCard={this.addCard} 
+                                    editCard={this.editCard} 
+                                    editColumn={this.editColumn} 
+                                    renderer={column.renderer || DefaultCardContent} />
                             /**
                              * @props   # key: to keep track of the columns created
                              *          # column: to pass column data

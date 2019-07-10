@@ -6,7 +6,7 @@ import Card from './Card';
 import '../css/column.css';
 
 export default class Column extends Component {
-
+        
     static propTypes = {
         headingClassName: PropTypes.string,
         cardListClassName: PropTypes.string,
@@ -14,54 +14,26 @@ export default class Column extends Component {
         onDragStyle: PropTypes.object,
         isDropDisabled: PropTypes.bool,
         isCombineEnabled: PropTypes.bool,
+        editCard: PropTypes.func,
     }
 
-    onDoubleClick = e => {
+    makeColumnEditable = e => {
         e.target.contentEditable = true;
     }
 
-    onBlur = e => {
+    editColumn = e => {
         e.target.contentEditable = false;
 
-        const newVal = e.target.innerText;
-        this.props.column.title = newVal;
-    }
-
-    // onCardDoubleClick = e => {
-    //     if (e.target.firstElementChild) {
-    //         e.target.firstElementChild.contentEditable = true;
-    //     } else {
-    //         e.target.contentEditable = true;
-    //     }
-    // }
-
-    // onCardBlur = e => {
-    //     e.target.contentEditable = false;
-
-    //     const newVal = e.target.innerText;
-    //     // this.props.card.content = newVal;
-    //     console.log(this.props)
-
-    // }
-
-    addCard = () => {
-        /*
-        console.log(this.props);
-        debugger;
-        
-
-        const newCard = {
-            id: `task-${this.props.cards.length + 1}`,
-            content: '',
+        const newTitle = e.target.innerText;
+        const newColumn = {
+            ...this.props.column,
+            title: newTitle,
         }
 
-        this.props.cards.push(newCard);
-        this.props.column.cardIds.push(newCard.id);
+        this.props.editColumn(newColumn);
+    }
 
-
-        this.forceUpdate()
-        */
-
+    addCard = () => {
         const columnId = this.props.column.id;
         this.props.addCard(columnId);
     }
@@ -71,8 +43,8 @@ export default class Column extends Component {
             <div className={`column ${this.props.columnClassName}`} >
                 <h3
                     className={`title ${this.props.columnClassName}`}
-                    onDoubleClick={this.onDoubleClick}
-                    onBlur={this.onBlur}
+                    onDoubleClick={this.makeColumnEditable}
+                    onBlur={this.editColumn}
                 >
                     {this.props.column.title}
                 </h3>
@@ -107,6 +79,7 @@ export default class Column extends Component {
                                                                             onDoubleClick={this.onCardDoubleClick} 
                                                                             onBlur={this.onCardBlur}
                                                                             renderer={this.props.renderer} 
+                                                                            editCard={this.props.editCard}
                                                                         />)}
                                 {provided.placeholder}
                             </div>)

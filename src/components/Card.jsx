@@ -15,9 +15,10 @@ export default class card extends Component {
         isDragDisabled: PropTypes.bool,
         disableInteractiveElementBlocking: PropTypes.bool,
         shouldRespectForcePress: PropTypes.bool,
+        editCard: PropTypes.func,
     }
 
-    onDoubleClick = e => {
+    makeCardEditable = e => {
         if (e.target.firstElementChild) {
             e.target.firstElementChild.contentEditable = true;
         } else {
@@ -25,12 +26,16 @@ export default class card extends Component {
         }
     }
 
-    onBlur = e => {
+    editCard = e => {
         e.target.contentEditable = false;
 
-        const newVal = e.target.innerText;
-        this.props.card.content = newVal;
+        const newContent = e.target.innerText;
+        const newCard = {
+            ...this.props.card,
+            content: newContent
+        }
 
+        this.props.editCard(newCard);
     }
 
     render() {
@@ -59,8 +64,8 @@ export default class card extends Component {
                         className={`card ${this.props.cardClassName}`}
                         ref={provided.innerRef}
                         isdragging={snapshot.isDragging.toString()}// TODO:
-                        onDoubleClick={this.onDoubleClick}
-                        onBlur={this.onBlur}
+                        onDoubleClick={this.makeCardEditable}
+                        onBlur={this.editCard}
                     >
                         {/* { this.props.card.content } */}
                         {this.props.renderer(this.props.card)}
