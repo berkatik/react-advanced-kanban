@@ -1,16 +1,18 @@
 .column {
     margin: 8px;
-    border: 1px solid lightgrey;
-    border-radius: 2px;
-    width: 220px;
+    /* border: 2px solid lightgrey; */
+    border-radius: 2px 2px 5px 5px;
+    width: 330px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
 .title {
     font-size: 20px;
     font-weight: bold;
     padding: 8px;
+    text-align: center;
 }
 
 .card-list {
@@ -18,10 +20,17 @@
     flex-grow: 1;
     min-height: 100px;
     max-height: 300px;
-    min-width: 200px;
+    min-width: 300px;
     max-width: 500px;
-    overflow-y: scroll;
-    overflow-x: a;
+    overflow-y: auto;
 }
 
 
+.btn__add-card {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    background: #64E387;
+    font-size: 16px;
+    padding: 10px;
+}
