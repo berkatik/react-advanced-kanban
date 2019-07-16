@@ -2,30 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Draggable } from 'react-beautiful-dnd';
 
+import DefaultRenderer from './DefaultRenderer';
+
 import "../css/card.css"
 
 // Since it does not holds state, we might turn it into a stateless function component
 export default class card extends Component {
-    makeCardEditable = e => {
-        if (e.target.firstElementChild) {
-            e.target.firstElementChild.contentEditable = true;
-        } else {
-            e.target.contentEditable = true;
-        }
-    }
-
-    editCard = e => {
-        e.target.contentEditable = false;
-
-        const newContent = e.target.innerText;
-        const newCard = {
-            ...this.props.card,
-            content: newContent
-        }
-
-        this.props.editCard(newCard);
-    }
-
     render() {
         return (
             <Draggable
@@ -51,11 +33,14 @@ export default class card extends Component {
                         className={`card ${this.props.cardClassName}`}
                         ref={provided.innerRef}
                         isdragging={snapshot.isDragging.toString()}// TODO:
-                        onDoubleClick={this.makeCardEditable}
-                        onBlur={this.editCard}
                     >
-                        {/* { this.props.card.content } */}
-                        {this.props.renderer(this.props.card)}
+                        {this.props.renderer(this.props.card.id, this.props.card.content, this.props.editCard, this.props.index)}
+                        {/* <DefaultRenderer 
+                            id={this.props.card.id}
+                            content={this.props.card.content}
+                            editCard={this.props.editCard}
+                            index={ this.props.index }
+                            ></DefaultRenderer> */}
                     </div>)
                 }}
             </Draggable>

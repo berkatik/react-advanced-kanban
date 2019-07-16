@@ -15,6 +15,7 @@ code {
 
 
 #board {
+    padding: 2%;
     display: flex;
 }
 
@@ -23,5 +24,11 @@ code {
 }
 
 #btn__add-column {
-    
+    max-width: 100px;
+    padding: 10px;
+    margin-left: 2%;
+    border-radius: 5px;
+    background: lightblue;
+    font-size: 16px;
+    font-weight: bold;
 }
