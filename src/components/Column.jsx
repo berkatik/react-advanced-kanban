@@ -6,16 +6,6 @@ import Card from './Card';
 import '../css/column.css';
 
 export default class Column extends Component {
-        
-    static propTypes = {
-        headingClassName: PropTypes.string,
-        cardListClassName: PropTypes.string,
-        columnClassName: PropTypes.string,
-        onDragStyle: PropTypes.object,
-        isDropDisabled: PropTypes.bool,
-        isCombineEnabled: PropTypes.bool,
-        editCard: PropTypes.func,
-    }
 
     makeColumnEditable = e => {
         e.target.contentEditable = true;
@@ -46,12 +36,11 @@ export default class Column extends Component {
                     onDoubleClick={this.makeColumnEditable}
                     onBlur={this.editColumn}
                 >
-                    {this.props.column.title}
+                    {this.props.column.title.toUpperCase()}
                 </h3>
                 <Droppable
                     droppableId={this.props.column.id}
                     isDropDisabled={this.props.isDropDisabled}
-                    isCombineEnabled={this.props.isCombineEnabled}
                 >
 
                     {(provided, snapshot) => {
@@ -59,7 +48,7 @@ export default class Column extends Component {
                         const style = {
                             ...provided.droppableProps.style,
                             transition: 'background-color 0.2s ease',
-                            backgroundColor: snapshot.isDraggingOver ? 'blue' : 'white',
+                            backgroundColor: snapshot.isDraggingOver ? '#EFEFEF' : 'white',
                             ...this.props.onDragStyle,
                         };
 
@@ -72,12 +61,11 @@ export default class Column extends Component {
                                 style={style}
                                 className={`card-list ${this.props.cardListClassName}`}
                             >
+
                                 {
                                     this.props.cards.map((card, index) => <Card key={card.id} 
                                                                             card={card} 
                                                                             index={index} 
-                                                                            onDoubleClick={this.onCardDoubleClick} 
-                                                                            onBlur={this.onCardBlur}
                                                                             renderer={this.props.renderer} 
                                                                             editCard={this.props.editCard}
                                                                         />)}
@@ -85,7 +73,7 @@ export default class Column extends Component {
                             </div>)
                     }}
                 </Droppable>
-                <button type="button" onClick={ this.addCard }>Add Card</button>
+                <button class="btn__add-card" type="button" onClick={ this.addCard }>Add Card</button>
             </div>
         )
     }

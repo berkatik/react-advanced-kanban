@@ -6,18 +6,6 @@ import "../css/card.css"
 
 // Since it does not holds state, we might turn it into a stateless function component
 export default class card extends Component {
-    static propTypes = {
-        card: PropTypes.object.isRequired,
-        cardClassName: PropTypes.string,
-        index: PropTypes.number.isRequired,
-        onDragStyle: PropTypes.object,
-        onClick: PropTypes.func,
-        isDragDisabled: PropTypes.bool,
-        disableInteractiveElementBlocking: PropTypes.bool,
-        shouldRespectForcePress: PropTypes.bool,
-        editCard: PropTypes.func,
-    }
-
     makeCardEditable = e => {
         if (e.target.firstElementChild) {
             e.target.firstElementChild.contentEditable = true;
@@ -52,8 +40,7 @@ export default class card extends Component {
 
                     const style = {
                         ...provided.draggableProps.style,
-                        // backgroundColor: snapshot.isDragging ? 'lightgreen' : 'white',
-                        backgroundColor: 'lightgreen',
+                        boxShadow: snapshot.isDragging ? '0 5px 10px 0 rgba(0, 0, 0, 0.2)' : 'none',
                         ...this.props.onDragStyle,
                     };
 

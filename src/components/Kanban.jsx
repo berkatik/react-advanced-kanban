@@ -9,35 +9,35 @@ const DefaultCardContent = (props) => <div>{props.content}</div>;
 export default class Kanban extends React.Component {
     state = this.props.data;
 
-    static propTypes = {
-        // DragDropContext container
-        onDragStart: PropTypes.func,
-        onDragUpdate: PropTypes.func,
-        onDragEnd: PropTypes.func,
-        onBeforeDragStart: PropTypes.func,
-        className: PropTypes.string,
-        data: PropTypes.object,
-        columnContianerClass: PropTypes.string,
+    // static propTypes = {
+    //     // DragDropContext container
+    //     onDragStart: PropTypes.func,
+    //     onDragUpdate: PropTypes.func,
+    //     onDragEnd: PropTypes.func,
+    //     onBeforeDragStart: PropTypes.func,
+    //     className: PropTypes.string,
+    //     data: PropTypes.object,
+    //     columnContianerClass: PropTypes.string,
 
-        columnSettings: PropTypes.shape({
-            headingClassName: PropTypes.string,
-            cardListClassName: PropTypes.string,
-            columnClassName: PropTypes.string,
-            onDragStyle: PropTypes.object,
-            isDropDisabled: PropTypes.bool,
-            isCombineEnabled: PropTypes.bool,
-        }),
+    //     columnSettings: PropTypes.shape({
+    //         headingClassName: PropTypes.string,
+    //         cardListClassName: PropTypes.string,
+    //         columnClassName: PropTypes.string,
+    //         onDragStyle: PropTypes.object,
+    //         isDropDisabled: PropTypes.bool,
+    //         isCombineEnabled: PropTypes.bool,
+    //     }),
 
-        cardSettings: PropTypes.shape({
-            cardClassName: PropTypes.string,
-            index: PropTypes.number.isRequired,
-            onDragStyle: PropTypes.object,
-            onClick: PropTypes.func,
-            isDragDisabled: PropTypes.bool,
-            disableInteractiveElementBlocking: PropTypes.bool,
-            shouldRespectForcePress: PropTypes.bool,
-        })
-    };
+    //     cardSettings: PropTypes.shape({
+    //         cardClassName: PropTypes.string,
+    //         index: PropTypes.number.isRequired,
+    //         onDragStyle: PropTypes.object,
+    //         onClick: PropTypes.func,
+    //         isDragDisabled: PropTypes.bool,
+    //         disableInteractiveElementBlocking: PropTypes.bool,
+    //         shouldRespectForcePress: PropTypes.bool,
+    //     })
+    // };
 
     onDragStart = start => {
 
@@ -171,7 +171,7 @@ export default class Kanban extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="board">
                 <DragDropContext
                     onDragStart={this.onDragStart}
                     onDragUpdate={this.onDragUpdate}
@@ -204,7 +204,7 @@ export default class Kanban extends React.Component {
                         })}
                     </div>
                 </DragDropContext>
-                <button type="button" onClick={this.addColumn}>Add Column</button>
+                <button id="btn__add-column"  type="button" onClick={this.addColumn}>Add Column</button>
             </div>
         )
     }
