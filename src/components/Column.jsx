@@ -12,6 +12,10 @@ export default class Column extends Component {
     }
 
     editColumn = e => {
+        if(e.keyCode !== 13) {
+            return;
+        }
+
         e.target.contentEditable = false;
 
         const newTitle = e.target.innerText;
@@ -35,8 +39,9 @@ export default class Column extends Component {
                     className={`title ${this.props.columnClassName}`}
                     onDoubleClick={this.makeColumnEditable}
                     onBlur={this.editColumn}
+                    onKeyUp={ this.editColumn }
                 >
-                    {this.props.column.title.toUpperCase()}
+                    {this.props.column.title}
                 </h3>
                 <Droppable
                     droppableId={this.props.column.id}
@@ -73,7 +78,7 @@ export default class Column extends Component {
                             </div>)
                     }}
                 </Droppable>
-                <button class="btn__add-card" type="button" onClick={ this.addCard }>Add Card</button>
+                <button className="btn__add-card" type="button" onClick={ this.addCard }>Add Card</button>
             </div>
         )
     }
