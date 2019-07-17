@@ -17,7 +17,7 @@ export default class Kanban extends React.Component {
 
                     className={this.props.className}
                 >
-                    <div className={`container__columns ${this.props.columnContianerClass}`}>
+                    <div className={`container__columns ${this.props.columnContianerClass ? this.props.columnContianerClass : ''}`}>
                         {this.props.data.columnOrder.map(columnId => {
                             const column = this.props.data.columns[columnId];
 

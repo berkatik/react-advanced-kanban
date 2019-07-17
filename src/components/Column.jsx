@@ -32,9 +32,9 @@ export default class Column extends Component {
 
     render() {
         return (
-            <div className={`column ${this.props.columnClassName}`} >
+            <div className={`column ${this.props.columnClassName ? this.props.columnClassName : ''}`} >
                 <h3
-                    className={`title ${this.props.columnClassName}`}
+                    className={`title`}
                     onDoubleClick={this.makeColumnEditable}
                     onBlur={this.editColumn}
                     onKeyDown={ this.editColumn }
@@ -62,7 +62,7 @@ export default class Column extends Component {
                                 ref={provided.innerRef}
                                 isdraggingover={snapshot.isDraggingOver.toString()}
                                 style={style}
-                                className={`card-list ${this.props.cardListClassName}`}
+                                className={`card-list ${this.props.cardListClassName ? this.props.cardListClassName : ''}`}
                             >
 
                                 {

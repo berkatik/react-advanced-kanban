@@ -28,7 +28,7 @@ export default class card extends Component {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         style={snapshot.isDragging ? style : provided.draggableProps.style}
-                        className={`card ${this.props.cardClassName}`}
+                        className={`card ${this.props.cardClassName ? this.props.cardClassName : ''}`}
                         ref={provided.innerRef}
                         isdragging={snapshot.isDragging.toString()}// TODO:
                     >
