@@ -39,7 +39,8 @@ export default class Kanban extends React.Component {
                         })}
                     </div>
                 </DragDropContext>
-                <button id="btn__add-column" type="button" onClick={this.props.addColumn}>Add Column</button>
+                {this.props.addColumn ? <button id="btn__add-column" type="button" onClick={this.props.addColumn}>Add Column</button> : null}
+                
             </div>
         )
     }

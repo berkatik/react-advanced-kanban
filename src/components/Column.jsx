@@ -76,7 +76,7 @@ export default class Column extends Component {
                             </div>)
                     }}
                 </Droppable>
-                <button className="btn__add-card" type="button" onClick={ this.addCard }>Add Card</button>
+                {this.props.addCard ? <button className="btn__add-card" type="button" onClick={this.addCard}>Add Card</button> : null}
             </div>
         )
     }
