@@ -34,7 +34,7 @@ export default class Column extends Component {
         return (
             <div className={`column ${this.props.columnClassName ? this.props.columnClassName : ''}`} >
                 <h3
-                    className={`title`}
+                    className={`title__column`}
                     onDoubleClick={this.makeColumnEditable}
                     onBlur={this.editColumn}
                     onKeyDown={ this.editColumn }

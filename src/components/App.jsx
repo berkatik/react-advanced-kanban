@@ -7,10 +7,7 @@ export default class App extends Component {
     state = initialData;
 
     onDragStart = start => {
-
-        if (this.state.onDragStart) {
-            this.state.onDragStart();
-        }
+        // Do something..
     }
 
     onBeforeDragStart = update => {
@@ -18,14 +15,10 @@ export default class App extends Component {
     }
 
     onDragUpdate = update => {
-
-        if (this.state.onDragUpdate) {
-            this.state.onDragUpdate();
-        }
+        // Do somethings..
     }
 
     onDragEnd = result => {
-
         const { destination, source, draggableId } = result;
 
         if (!destination) return;
@@ -80,14 +73,13 @@ export default class App extends Component {
         }
 
         this.setState(newState);
-
-        return;
     }
 
     addCard = (columnId) => {
         const newCard = {
             id: `task-${this.state.cards.length + 1}`,
-            content: 'New Card',
+            title: 'New Card',
+            content: 'Fill me in!',
         }
 
         this.state.cards.push(newCard);
@@ -104,7 +96,6 @@ export default class App extends Component {
         }
 
         const newState = this.state;
-
         newState.columns[newColumn.id] = newColumn;
         newState.columnOrder.push(newColumn.id);
 

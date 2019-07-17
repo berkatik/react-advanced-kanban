@@ -14,13 +14,11 @@ export default class Kanban extends React.Component {
                     onDragUpdate={this.props.onDragUpdate}
                     onDragEnd={this.props.onDragEnd}
                     onBeforeDragStart={this.props.onBeforeDragStart}
-
                     className={this.props.className}
                 >
                     <div className={`container__columns ${this.props.columnContianerClass ? this.props.columnContianerClass : ''}`}>
                         {this.props.data.columnOrder.map(columnId => {
                             const column = this.props.data.columns[columnId];
-
                             const cards = column.cardIds.map(cardId => {
                                 return this.props.data.cards.find(card => card["id"] === cardId)
                             })

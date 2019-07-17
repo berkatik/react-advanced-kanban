@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Draggable } from 'react-beautiful-dnd';
 
 import "../css/card.css"
@@ -28,17 +27,15 @@ export default class card extends Component {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         style={snapshot.isDragging ? style : provided.draggableProps.style}
-                        className={`card ${this.props.cardClassName ? this.props.cardClassName : ''}`}
+                        className={`container__card ${this.props.cardClassName ? this.props.cardClassName : ''}`}
                         ref={provided.innerRef}
                         isdragging={snapshot.isDragging.toString()}// TODO:
                     >
-                        {this.props.renderer(this.props.card.id, this.props.card.content, this.props.editCard, this.props.index)}
-                        {/* <DefaultRenderer 
-                            id={this.props.card.id}
-                            content={this.props.card.content}
-                            editCard={this.props.editCard}
-                            index={ this.props.index }
-                            ></DefaultRenderer> */}
+                        { this.props.renderer(
+                            this.props.card,
+                            this.props.editCard, 
+                            this.props.index ) 
+                        }
                     </div>)
                 }}
             </Draggable>

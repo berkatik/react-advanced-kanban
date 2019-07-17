@@ -1,10 +1,14 @@
 export const initialData = {
     "cards": [
         {
-            "id": 'task-1', "content": 'Take out the garbage'
+            "id": 'task-1', 
+            "title": 'Take out the garbage',
+            "content": 'Take the garbage from the kitchen and take it out to the dumpster on the street.'
         },
         {
-            "id": 'task-2', "content": 'Take dog out for a walk'
+            "id": 'task-2',
+            "title": 'Take dog out for a walk',
+            "content": 'Dog needs to take a walk every morning before going to work, do not forget it!'
         },
     ],
     "columns": {
