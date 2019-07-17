@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Droppable } from 'react-beautiful-dnd';
 import Card from './Card';
 
@@ -12,19 +11,18 @@ export default class Column extends Component {
     }
 
     editColumn = e => {
-        if(e.keyCode !== 13) {
-            return;
+        if (e.keyCode === 13 || e.type === 'blur') {
+            e.target.contentEditable = false;
+
+            const newTitle = e.target.innerText;
+            const newColumn = {
+                ...this.props.column,
+                title: newTitle,
+            }
+
+            this.props.editColumn(newColumn);
         }
-
-        e.target.contentEditable = false;
-
-        const newTitle = e.target.innerText;
-        const newColumn = {
-            ...this.props.column,
-            title: newTitle,
-        }
-
-        this.props.editColumn(newColumn);
+        return;
     }
 
     addCard = () => {
@@ -39,7 +37,7 @@ export default class Column extends Component {
                     className={`title ${this.props.columnClassName}`}
                     onDoubleClick={this.makeColumnEditable}
                     onBlur={this.editColumn}
-                    onKeyUp={ this.editColumn }
+                    onKeyDown={ this.editColumn }
                 >
                     {this.props.column.title}
                 </h3>

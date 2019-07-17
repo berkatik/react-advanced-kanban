@@ -1,40 +1,10 @@
 import React from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { PropTypes } from 'prop-types';
 
 import { DefaultRenderer } from './DefaultRenderer';
 import Column from './Column';
 import '../css/index.css';
 export default class Kanban extends React.Component {
-    // static propTypes = {
-    //     // DragDropContext container
-    //     onDragStart: PropTypes.func,
-    //     onDragUpdate: PropTypes.func,
-    //     onDragEnd: PropTypes.func,
-    //     onBeforeDragStart: PropTypes.func,
-    //     className: PropTypes.string,
-    //     data: PropTypes.object,
-    //     columnContianerClass: PropTypes.string,
-
-    //     columnSettings: PropTypes.shape({
-    //         headingClassName: PropTypes.string,
-    //         cardListClassName: PropTypes.string,
-    //         columnClassName: PropTypes.string,
-    //         onDragStyle: PropTypes.object,
-    //         isDropDisabled: PropTypes.bool,
-    //         isCombineEnabled: PropTypes.bool,
-    //     }),
-
-    //     cardSettings: PropTypes.shape({
-    //         cardClassName: PropTypes.string,
-    //         index: PropTypes.number.isRequired,
-    //         onDragStyle: PropTypes.object,
-    //         onClick: PropTypes.func,
-    //         isDragDisabled: PropTypes.bool,
-    //         disableInteractiveElementBlocking: PropTypes.bool,
-    //         shouldRespectForcePress: PropTypes.bool,
-    //     })
-    // };
 
     render() {
         return (

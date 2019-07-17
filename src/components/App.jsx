@@ -81,11 +81,6 @@ export default class App extends Component {
 
         this.setState(newState);
 
-
-        if (this.state.onDragEnd) {
-            this.state.onDragEnd();
-        }
-
         return;
     }
 

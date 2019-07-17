@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Draggable } from 'react-beautiful-dnd';
 
-import DefaultRenderer from './DefaultRenderer';
-
 import "../css/card.css"
 
 // Since it does not holds state, we might turn it into a stateless function component
