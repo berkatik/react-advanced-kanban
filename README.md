@@ -2,6 +2,8 @@
 
 React Advanced Kanban is a React compoenent that is builded with react-beautiful-dnd. It is developed to be fairly flexible component, you can even render your own component as a Card.
 
+**DEMO==>** https://berkatik.github.io/react-advanced-kanban/
+
 ## Installation
 ```
 npm i react-advanced-kanban
