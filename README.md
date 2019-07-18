@@ -1,68 +1,111 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Advanced Kanban
 
-## Available Scripts
+React Advanced Kanban is a React compoenent that is builded with react-beautiful-dnd. It is developed to be fairly flexible component, you can even render your own component as a Card.
 
-In the project directory, you can run:
+## Installation
+```
+npm i react-advanced-kanban
+```
+```
+import Kanban from 'react-advanced-kanban';
+```
 
-### `npm start`
+## Example Usage
+```
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import Kanban
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+export default class App extends Component {
+    state = {
+        "cards": [
+            {
+                "id": 'task-1', 
+                "title": 'Take out the garbage',
+                "content": 'Take the garbage from the kitchen and take it out to the dumpster on the street.'
+            },
+            {
+                "id": 'task-2',
+                "title": 'Take dog out for a walk',
+                "content": 'Dog needs to take a walk every morning before going to work, do not forget it!'
+            },
+        ],
+        "columns": {
+            "column-1": {
+                id: "column-1",
+                title: 'To-do',
+                cardIds: ['task-1', 'task-2'],
+            },
+            "column-2": {
+                id: "column-2",
+                title: 'Done',
+                cardIds: [],
+            }
+        },
+        "columnOrder": ["column-1", "column-2"]
+    }
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+    render() {
+        return (
+            <Kanban 
+                data={ this.state } 
+            ></Kanban>
+        )
+    }
+}
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Required Data Structure Example
+Kanban needs to have a base structure like below to work properly. We are working on to make it as flexible as possible. Below is the base structure of the data needed.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```
+"cards": [
+        {
+            "id": 'task-1',
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+            // Other stuff..
+        },
+        {
+            "id": 'task-2',
 
-### `npm run eject`
+            // Other stuff..
+        },
+    ],
+    "columns": {
+        "column-1": {
+            id: "column-1",
+            title: 'To-do',
+            cardIds: ['task-1', 'task-2'],
+        },
+        "column-2": {
+            id: "column-2",
+            title: 'Done',
+            cardIds: [],
+        }
+    },
+    "columnOrder": ["column-1", "column-2"]
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Since you render your own component inside cards, **you can give whatever you need as long as the cards have an id**. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Kanban builds its structure from _columns_ . _cardIds_ array inside the column objects are used to determine what card belongs to where and how they are arranged.
+_columnOrder_ array inside the columns object is used to show which columns to show and column order.
+But keep in mind, **you need to follow the columns structure** so it can work properly.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Props
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **data:**  **_Required_**. Data used by Kanban to render the columns and cards. Needs to follow rules above.
+- **addCard:** Method used to update the state and add new card to the data. If it is given, "Add Card" button will show up at the bottom of the each column. If not given, "Add Card" button will not be rendered.
+- **addColumn:** Method used to update the state and add new column to the data. If it is given, "Add Column" button will show up at the right side of the right most column. If not given, "Add Column" button will not rendered. Be careful to follow the required data structure.
+- **editCard:** Method used to update the state according to edited card.
+- **editColumn:** Method used to update the state according to edited column.
+- **onDragStart:** Method executed when a card is started to being dragged.
+- **onDragUpdate:** Method executed when the card that is being dragged is moved.
+- **onDragEnd:** Method executed when the card that is being dragged is dropped.
+- **onBeforeDragStart:** Method executed right before a card is started to being dragged.
+- **renderer:** A react component that controls how you render your data. 
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
