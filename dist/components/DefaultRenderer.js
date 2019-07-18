@@ -9,13 +9,13 @@ var _react = _interopRequireDefault(require("react"));
 
 require("../css/defaultRenderer.css");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var makeCardTitleEditable = function makeCardTitleEditable(id) {
+var makeCardTitleEditable = id => {
   document.getElementById("title__card-".concat(id)).contentEditable = true;
 };
 
-var editCardTitle = function editCardTitle(id, editCardState, e) {
+var editCardTitle = (id, editCardState, e) => {
   if (e.keyCode === 13 || e.type === 'blur') {
     document.getElementById("title__card-".concat(id)).contentEditable = false;
     var newTitle = document.getElementById("title__card-".concat(id)).innerText;
@@ -29,11 +29,11 @@ var editCardTitle = function editCardTitle(id, editCardState, e) {
   }
 };
 
-var makeCardContentEditable = function makeCardContentEditable(id) {
+var makeCardContentEditable = id => {
   document.getElementById("content__card-".concat(id)).contentEditable = true;
 };
 
-var editCardContent = function editCardContent(id, editCardState, e) {
+var editCardContent = (id, editCardState, e) => {
   if (e.keyCode === 13 || e.type === 'blur') {
     document.getElementById("content__card-".concat(id)).contentEditable = false;
     var currentTitle = document.getElementById("title__card-".concat(id)).innerText;
@@ -47,31 +47,31 @@ var editCardContent = function editCardContent(id, editCardState, e) {
   }
 };
 
-var DefaultRenderer = function DefaultRenderer(card, editCardState, index) {
-  return _react["default"].createElement("div", {
+var DefaultRenderer = (card, editCardState, index) => {
+  return _react.default.createElement("div", {
     className: "card"
-  }, _react["default"].createElement("h3", {
+  }, _react.default.createElement("h3", {
     id: "title__card-".concat(card.id),
     className: "title",
-    onDoubleClick: function onDoubleClick() {
+    onDoubleClick: () => {
       makeCardTitleEditable(card.id);
     },
-    onBlur: function onBlur(e) {
+    onBlur: e => {
       editCardTitle(card.id, editCardState, e);
     },
-    onKeyDown: function onKeyDown(e) {
+    onKeyDown: e => {
       editCardTitle(card.id, editCardState, e);
     }
-  }, card.title), _react["default"].createElement("p", {
+  }, card.title), _react.default.createElement("p", {
     id: "content__card-".concat(card.id),
     className: "content",
-    onDoubleClick: function onDoubleClick() {
+    onDoubleClick: () => {
       makeCardContentEditable(card.id);
     },
-    onBlur: function onBlur(e) {
+    onBlur: e => {
       editCardContent(card.id, editCardState, e);
     },
-    onKeyDown: function onKeyDown(e) {
+    onKeyDown: e => {
       editCardContent(card.id, editCardState, e);
     }
   }, card.content));
