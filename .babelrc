@@ -1,0 +1,29 @@
+{
+    "plugins": [
+        [
+            "@babel/plugin-proposal-class-properties",
+            {
+                "loose": true
+            }
+        ],
+        ["css-modules-transform", {
+            "extractCss": {
+                "dir": "./lib/",
+                "relativeRoot": "./src/",
+                "filename": "[path]/[name].css"
+            },
+            "keepImport": true
+            }],
+        "@babel/plugin-transform-react-jsx"
+    ],
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "esmodules": true
+                }
+            }
+        ]
+    ]
+}

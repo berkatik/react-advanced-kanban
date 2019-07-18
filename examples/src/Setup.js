@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import Kanban from './Kanban'
-import { initialData } from '../initialData.js';
+import Kanban from '../../src'
+import { initialData } from './initialData.js';
 
-export default class App extends Component {
+export default class Setup extends Component {
     state = initialData;
 
     onDragStart = start => {
@@ -127,7 +127,7 @@ export default class App extends Component {
         return (
             <Kanban 
                 data={ this.state } 
-                // addCard={ this.addCard } 
+                addCard={ this.addCard } 
                 addColumn={ this.addColumn } 
                 editCard={ this.editCard } 
                 editColumn={ this.editColumn }
@@ -139,3 +139,4 @@ export default class App extends Component {
         )
     }
 }
+

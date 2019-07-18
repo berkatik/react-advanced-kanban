@@ -1,0 +1,11 @@
+.container__card {
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    background-color: white;
+}
+
+.dragging {
+    background-color: lightgreen;
+}
+
