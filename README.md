@@ -6,6 +6,10 @@ React Advanced Kanban is a React compoenent that is builded with react-beautiful
 
 ## Installation
 ```
+yarn add react-advanced-kanban
+```
+or
+```
 npm i react-advanced-kanban
 ```
 
