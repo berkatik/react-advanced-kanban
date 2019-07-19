@@ -14,7 +14,7 @@ import Kanban from 'react-advanced-kanban';
 ```
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Kanban
+import Kanban from 'react-advanced-kanban';
 
 export default class App extends Component {
     state = {

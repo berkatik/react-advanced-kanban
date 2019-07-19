@@ -1,15 +1,22 @@
 {
     "name": "react-advanced-kanban",
-    "version": "0.2.1",
+    "version": "0.2.3",
     "description": "",
     "main": "dist/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "webpack-dev-server --mode development",
         "transpile": "babel src -d dist --copy-files",
-        "prepublishOnly": "npm run transpile"
+        "prepublishOnly": "npm run transpile",
+        "build": "webpack --mode production",
+        "deploy": "gh-pages -d examples/dist",
+        "publish-demo": "npm run build && npm run deploy"
     },
     "author": "Berk Atik",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/berkatik/react-advanced-kanban.git"
+    },
     "license": "ISC",
     "devDependencies": {
         "@babel/cli": "^7.5.0",
@@ -22,6 +29,7 @@
         "babel-preset-env": "^1.7.0",
         "babel-preset-es2015": "^6.24.1",
         "css-loader": "^3.0.0",
+        "gh-pages": "^2.0.1",
         "html-webpack-plugin": "3.0.7",
         "style-loader": "^0.23.1",
         "webpack": "^4.36.1",
