@@ -8,9 +8,6 @@ React Advanced Kanban is a React compoenent that is builded with react-beautiful
 ```
 npm i react-advanced-kanban
 ```
-```
-import Kanban from 'react-advanced-kanban';
-```
 
 ## Example Usage
 ```
